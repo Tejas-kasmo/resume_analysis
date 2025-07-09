@@ -45,4 +45,12 @@ def get_structured_data(file_key, s3):
         linkedin_url = url
         break 
 
-    return name, email, phone, skills_string, linkedin_url
+    git_hub = None
+    git_hub_pattern = r'github\.com/([A-Za-z0-9\-_\/]+)'
+
+    for match in re.finditer(git_hub_pattern, text):
+        path = match.group(1)
+        git_hub = f"https://github.com/{path}"
+        break
+
+    return name, email, phone, skills_string, linkedin_url, git_hub
