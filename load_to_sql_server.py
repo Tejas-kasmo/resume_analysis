@@ -3,7 +3,7 @@ import pyodbc
 import configparser as cp
 import datetime
 
-def connect(name, email, phone, skills, linkedin):
+def connect(name, email, phone, skills, linkedin, github):
 
     config = cp.ConfigParser()
     config.read(r'C:\Users\mysur\OneDrive\Desktop\python_tutorial\venv1\config.config')
@@ -25,8 +25,8 @@ def connect(name, email, phone, skills, linkedin):
     cursor = conn.cursor()
 
     insert_query = """
-    INSERT INTO resume_data (name, email, linkedin, phone, skills)
-    VALUES (?, ?, ?, ?, ?)
+    INSERT INTO resume_data (name, email, linkedin, github, phone, skills)
+    VALUES (?, ?, ?, ?, ?, ?)
     """
 
     cursor.execute(
@@ -34,6 +34,7 @@ def connect(name, email, phone, skills, linkedin):
     name,
     email,
     linkedin,
+    github,
     phone,
     skills
     )
